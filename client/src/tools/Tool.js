@@ -1,7 +1,9 @@
 export default class Tool {
-    constructor(canvas) {
+    constructor(canvas, socket, id) {
         this.canvas = canvas
-        this.ctx = canvas.getContext("2d")
+        this.socket = socket
+        this.id = id
+        this.ctx = canvas.getContext('2d')
         this.destroyEvents()
     }
 
@@ -16,11 +18,9 @@ export default class Tool {
         this.ctx.lineWidth = width
     }
 
-
     destroyEvents() {
-        this.canvas.mouseUpHandler = null   
-        this.canvas.mouseDownHandler = null
-        this.canvas.mouseMoveHandler = null
-  }
-
+        this.canvas.onmousemove = null
+        this.canvas.onmousedown = null
+        this.canvas.onmouseup = null
+    }
 }
