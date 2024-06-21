@@ -38,7 +38,8 @@ const Canvas = observer(() => {
             canvasRef.current.height
           );
         };
-      });
+      })
+      .catch(() => console.log("Нет данных"));
   }, []);
 
   useEffect(() => {
@@ -70,13 +71,11 @@ const Canvas = observer(() => {
         }
       };
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [canvasState.username]);
 
   const drawHandler = (msg) => {
     const figure = msg.figure;
     const ctx = canvasRef.current.getContext("2d");
-    // eslint-disable-next-line default-case
     switch (figure.type) {
       case "brush":
         Brush.draw(ctx, figure.x, figure.y);
